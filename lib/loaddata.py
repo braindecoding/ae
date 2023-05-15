@@ -88,3 +88,4 @@ def Data28():
     print (Y_test.shape)
     numTrn=X_train.shape[0]#ada 90 data training
     numTest=X_test.shape[0]#ada 10 data testing
+    return X_train,X_test
