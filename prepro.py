@@ -21,7 +21,9 @@ resolution=28
 X_train = X_train.reshape([X_train.shape[0], resolution, resolution])
 X_test = X_test.reshape([X_test.shape[0], resolution, resolution])
 # %%
-X_train = [np.transpose(matrix) for matrix in X_train]
+X_train_t = [np.transpose(matrix) for matrix in X_train]
 
-X_test = [np.transpose(matrix) for matrix in X_test]
+X_test_t = [np.transpose(matrix) for matrix in X_test]
 # %%
+X_train_t = np.transpose(X_train, (0, 2, 1))
+X_test_t = np.transpose(X_test, (0, 2, 1))

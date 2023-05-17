@@ -54,14 +54,18 @@ def Data28():
 
     # In[]: X adalah gambar stimulus,ukuran pixel 28x28 = 784 di flatten sebelumnya dalam satu baris, 28 row x 28 column dengan channel 1(samaa kaya miyawaki)
     resolution = 28
-    X_train = X_train.reshape([X_train.shape[0], resolution, resolution]).T
-    X_test = X_test.reshape([X_test.shape[0], resolution, resolution]).T
+    X_train = X_train.reshape([X_train.shape[0], resolution, resolution])
+    X_test = X_test.reshape([X_test.shape[0], resolution, resolution])
+    X_train = np.transpose(X_train, (0, 2, 1))
+    X_test = np.transpose(X_test, (0, 2, 1))
+    #X_train = X_train.reshape([X_train.shape[0], resolution, resolution])
+    #X_test = X_test.reshape([X_test.shape[0], resolution, resolution])
     #channel di depan
     #X_train = X_train.reshape([X_train.shape[0], 1, resolution, resolution])
     #X_test = X_test.reshape([X_test.shape[0], 1, resolution, resolution])
     #channel di belakang(edit rolly) 1 artinya grayscale
-    X_train = X_train.reshape([X_train.shape[2], resolution, resolution, 1])
-    X_test = X_test.reshape([X_test.shape[2], resolution, resolution, 1])
+    X_train = X_train.reshape([X_train.shape[0], resolution, resolution, 1])
+    X_test = X_test.reshape([X_test.shape[0], resolution, resolution, 1])
     # In[]: Normlization sinyal fMRI, min max agar nilainya hanya antara 0 sd 1
     min_max_scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))   
     Y_train = min_max_scaler.fit_transform(Y_train)     
