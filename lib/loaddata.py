@@ -48,34 +48,20 @@ def Data28():
     # ini stimulus semua
     X_train = handwriten_69['stimTrn']#90 gambar dalam baris isi per baris 784 kolom
     X_test = handwriten_69['stimTest']#10 gambar dalam baris isi 784 kolom
-
-    X_train = X_train.astype('float32') / 255.
-    X_test = X_test.astype('float32') / 255.
-
-    # In[]: lihat isinya, ketika dijalankan hasilnya jelek
-    #X_train = X_train[:].T
-    #X_test = X_test[:].T
-    
-    stim0=np.reshape(X_test[0],(28,28)).T
-    stim1=np.reshape(X_test[1],(28,28)).T
-    stim2=np.reshape(X_test[2],(28,28)).T
-    stim3=np.reshape(X_test[3],(28,28)).T
-
-    stimtrain0=np.reshape(X_train[0],(28,28)).T
-    stimtrain1=np.reshape(X_train[1],(28,28)).T
-    stimtrain2=np.reshape(X_train[2],(28,28)).T
-    stimtrain3=np.reshape(X_train[3],(28,28)).T
-
-
+    # normalisasi agar hasil 0-1
+    X_train = X_train.astype('float32') / 255.0
+    X_test = X_test.astype('float32') / 255.0
 
     # In[]: X adalah gambar stimulus,ukuran pixel 28x28 = 784 di flatten sebelumnya dalam satu baris, 28 row x 28 column dengan channel 1(samaa kaya miyawaki)
     resolution = 28
+    X_train = X_train.reshape([X_train.shape[0], resolution, resolution]).T
+    X_test = X_test.reshape([X_test.shape[0], resolution, resolution]).T
     #channel di depan
     #X_train = X_train.reshape([X_train.shape[0], 1, resolution, resolution])
     #X_test = X_test.reshape([X_test.shape[0], 1, resolution, resolution])
     #channel di belakang(edit rolly) 1 artinya grayscale
-    X_train = X_train.reshape([X_train.shape[0], resolution, resolution, 1])
-    X_test = X_test.reshape([X_test.shape[0], resolution, resolution, 1])
+    X_train = X_train.reshape([X_train.shape[2], resolution, resolution, 1])
+    X_test = X_test.reshape([X_test.shape[2], resolution, resolution, 1])
     # In[]: Normlization sinyal fMRI, min max agar nilainya hanya antara 0 sd 1
     min_max_scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))   
     Y_train = min_max_scaler.fit_transform(Y_train)     
