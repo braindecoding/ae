@@ -18,14 +18,10 @@ X_test = X_test.astype('float32') / 255.0
 
 # In[]:
 resolution=28
-X_train = X_train.reshape([X_train.shape[0], resolution, resolution]).T
-X_test = X_test.reshape([X_test.shape[0], resolution, resolution]).T
+X_train = X_train.reshape([X_train.shape[0], resolution, resolution])
+X_test = X_test.reshape([X_test.shape[0], resolution, resolution])
 # %%
-X_train = X_train.reshape([X_train.shape[2], resolution, resolution, 1])
-X_test = X_test.reshape([X_test.shape[2], resolution, resolution, 1])
+X_train = [np.transpose(matrix) for matrix in X_train]
+
+X_test = [np.transpose(matrix) for matrix in X_test]
 # %%
-train = np.zeros(shape=(28, 28))
-for i in X_train:
-    stim=np.reshape(i,(28,28)).T
-    np.append(train, stim) 
-    plt.imshow(stim, interpolation='nearest')
