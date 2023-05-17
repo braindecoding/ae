@@ -5,24 +5,12 @@ Created on Mon Aug 16 06:42:45 2021
 @author: RPL 2020
 """
 
-
 from lib import loaddata,plot,ae,citra
 from sklearn.model_selection import train_test_split
 import numpy as np
 
 # In[]: Load data rekon dan miyawaki
 stimtrain,stimtest=loaddata.Data28()
-
-# In[]:
-stim0=np.reshape(stimtest[0],(28,28))
-stim1=np.reshape(stimtest[1],(28,28))
-stim2=np.reshape(stimtest[2],(28,28))
-stim3=np.reshape(stimtest[3],(28,28))
-
-stimtrain0=np.reshape(stimtrain[0],(28,28))
-stimtrain1=np.reshape(stimtrain[1],(28,28))
-stimtrain2=np.reshape(stimtrain[2],(28,28))
-stimtrain3=np.reshape(stimtrain[3],(28,28))
 
 # In[]:
 input_train,input_test=train_test_split(stimtrain, test_size=0.1, random_state=42)
@@ -38,6 +26,4 @@ cnnautoencoder=ae.trainCNNDenoise(np.array(input_train), np.array(output_train),
 reconstructedcnn = cnnautoencoder.predict(np.array(stimtest))
 
 # In[]: Plot gambar
-plot.tigaKolomGambar('Autoencoder CNN Denoising','Stimulus',stimtest,'Rekonstruksi',stimtest,'Recovery',reconstructedcnn) 
-                          
- 
+plot.tigaKolomGambar('Autoencoder CNN Denoising','Stimulus',stimtest,'Rekonstruksi',stimtest,'Recovery',reconstructedcnn)
