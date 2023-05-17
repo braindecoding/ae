@@ -13,19 +13,17 @@ import numpy as np
 # In[]: Load data rekon dan miyawaki
 stimtrain,stimtest=loaddata.Data28()
 
-# In[]: Load data rekon dan miyawaki
-label,pred,allscoreresults=loaddata.fromArch(0)
-labelm,predm,allscoreresultsm=loaddata.Miyawaki()
+# In[]:
+stim0=np.reshape(stimtest[0],(28,28)).T
+stim1=np.reshape(stimtest[1],(28,28)).T
+stim2=np.reshape(stimtest[2],(28,28)).T
+stim3=np.reshape(stimtest[3],(28,28)).T
 
-# In[]: ubah ke matrix dan untuk data cnn, resize ke 28x28
-stim=[]
-rekon=[]
+stimtrain0=np.reshape(stimtrain[0],(28,28)).T
+stimtrain1=np.reshape(stimtrain[1],(28,28)).T
+stimtrain2=np.reshape(stimtrain[2],(28,28)).T
+stimtrain3=np.reshape(stimtrain[3],(28,28)).T
 
-for li,pi in zip(label,pred):
-    # stim.append(resize(citra.dariRow(li),(28,28)))
-    # rekon.append(resize(citra.dariRow(pi),(28,28)))
-    stim.append(citra.dariRow(li))
-    rekon.append(citra.dariRow(pi))
 # In[]:
 input_train,input_test=train_test_split(stimtrain, test_size=0.1, random_state=42)
 output_train,output_test=train_test_split(stimtrain, test_size=0.1, random_state=42) 

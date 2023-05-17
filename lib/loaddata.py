@@ -53,6 +53,9 @@ def Data28():
     X_test = X_test.astype('float32') / 255.
 
     # In[]: lihat isinya, ketika dijalankan hasilnya jelek
+    #X_train = X_train[:].T
+    #X_test = X_test[:].T
+    
     stim0=np.reshape(X_test[0],(28,28)).T
     stim1=np.reshape(X_test[1],(28,28)).T
     stim2=np.reshape(X_test[2],(28,28)).T
