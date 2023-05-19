@@ -68,7 +68,11 @@ def trainCNNDenoise(input_train, output_train,input_test, output_test):
     # In[]: AutoEncoder    
     
     denoising_ae = Sequential([denoising_encoder, denoising_decoder])
-    denoising_ae.compile(loss="binary_crossentropy", optimizer=SGD(lr=0.5))
+    
+    #OPTIMIZER =  tf.keras.optimizers.Adam(learning_rate = 0.001)
+    LOSS = 'binary_crossentropy'
+    
+    denoising_ae.compile(loss=LOSS, optimizer=SGD(lr=2))
     denoising_ae.fit(input_train, output_train, batch_size=256, epochs=100, verbose=1, shuffle=True,
                           validation_data=(input_test, output_test))
     denoising_ae.save_weights('trainCNNDenoise.h5')
